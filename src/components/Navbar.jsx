@@ -1,7 +1,10 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       {/* -------------------- NAVBAR TOP SECTION -------------------- */}
@@ -9,10 +12,12 @@ const Navbar = () => {
         {/* --------- LEFT SECTION --------- */}
         <div className="flex items-center gap-2">
           <img
+            onClick={() => navigate(-1)}
             src={assets.arrow_left}
             className="w-8 bg-black p-2 rounded-2xl cursor-pointer"
           />
           <img
+            onClick={() => navigate(+1)}
             src={assets.arrow_right}
             className="w-8 bg-black p-2 rounded-2xl cursor-pointer"
           />
