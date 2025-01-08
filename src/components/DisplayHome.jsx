@@ -8,6 +8,8 @@ const DisplayHome = () => {
   return (
     <>
       <Navbar />
+
+      {/* -------------------- FEATURED CHARTS CARD -------------------- */}
       <div className="mb-4">
         <h1 className="my-5 font-bold text-2xl">Featured Charts</h1>
         <div className="flex overflow-auto">
@@ -23,6 +25,7 @@ const DisplayHome = () => {
         </div>
       </div>
 
+      {/* -------------------- TODAY'S BIGGEST HITS CARD -------------------- */}
       <div className="mb-4">
         <h1 className="my-5 font-bold text-2xl">Today's biggest hits</h1>
         <div className="flex overflow-auto">
