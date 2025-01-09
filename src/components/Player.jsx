@@ -1,19 +1,29 @@
 import React, { useContext } from "react";
-import { assets, songsData } from "../assets/assets";
+import { assets } from "../assets/assets";
 import { PlayerContext } from "../context/PlayerContext";
 
 const Player = () => {
-  const { seekBar, seekBg, playerStatus, play, pause } =
-    useContext(PlayerContext);
+  const {
+    track,
+    seekBar,
+    seekBg,
+    playerStatus,
+    play,
+    pause,
+    time,
+    previous,
+    next,
+    seekSong,
+  } = useContext(PlayerContext);
 
   return (
     <div className="h-[10%] bg-black flex justify-between items-center text-white px-4">
       {/* -------------------- SONG NAME & IMG -------------------- */}
       <div className="hidden lg:flex items-center gap-4">
-        <img src={songsData[0].image} className="w-12" />
+        <img src={track.image} className="w-12" />
         <div>
-          <p>{songsData[0].name}</p>
-          <p>{songsData[0].desc.slice(0, 12)}</p>
+          <p>{track.name}</p>
+          <p>{track.desc.slice(0, 12)}</p>
         </div>
       </div>
 
@@ -21,7 +31,11 @@ const Player = () => {
       <div className="flex flex-col items-center gap-1 m-auto">
         <div className="flex gap-4">
           <img src={assets.shuffle_icon} className="w-4 cursor-pointer" />
-          <img src={assets.prev_icon} className="w-4 cursor-pointer" />
+          <img
+            onClick={previous}
+            src={assets.prev_icon}
+            className="w-4 cursor-pointer"
+          />
           {playerStatus ? (
             <img
               onClick={pause}
@@ -35,14 +49,21 @@ const Player = () => {
               className="w-4 cursor-pointer"
             />
           )}
-          <img src={assets.next_icon} className="w-4 cursor-pointer" />
+          <img
+            onClick={next}
+            src={assets.next_icon}
+            className="w-4 cursor-pointer"
+          />
           <img src={assets.loop_icon} className="w-4 cursor-pointer" />
         </div>
 
         {/* -------------------- PLAYER CONTROLLER -------------------- */}
         <div className="flex items-center gap-5">
-          <p>1:06</p>
+          <p>
+            {time.currentTime.minute}:{time.currentTime.second}
+          </p>
           <div
+            onClick={seekSong}
             ref={seekBg}
             className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer"
           >
@@ -51,7 +72,9 @@ const Player = () => {
               className="h-1 border-none w-0 bg-green-800 rounded-full"
             />
           </div>
-          <p>3:20</p>
+          <p>
+            {time.totalTime.minute}:{time.totalTime.second}
+          </p>
         </div>
       </div>
 
