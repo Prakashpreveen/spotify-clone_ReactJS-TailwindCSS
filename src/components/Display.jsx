@@ -8,9 +8,10 @@ const Display = () => {
   const displayRef = useRef();
   const location = useLocation(); //to get the location of the current page
   const isAlbum = location.pathname.includes("album"); // to check currently in album page or not
-  const albumId = isAlbum ? location.pathname.slice(-1) : "";
-  const bgColor = albumsData[Number(albumId)].bgColor;
+  const albumId = isAlbum ? location.pathname.slice(-1) : ""; // getting album id
+  const bgColor = albumsData[Number(albumId)].bgColor; //getting bg-color based on albumId
 
+  //ASSIGNING BG-COLOR USING USEEFECT() AND USEREF() HOOKS
   useEffect(() => {
     if (isAlbum) {
       displayRef.current.style.background = `linear-gradient(${bgColor},#121212)`;
